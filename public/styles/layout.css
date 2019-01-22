@@ -25,13 +25,9 @@ body {
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
 
- main {
-   position: relative;
+ main.container {
    width: 450px;
    background: white;
-   top: 140px;
-   left: 450px;
-   
-   
-
+   margin: auto;
+   padding: 140px 2em 2em 2em;
  }
