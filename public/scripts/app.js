@@ -81,6 +81,9 @@ $(function () {
       renderTweets(tweets);
     });
   };
+
+  // Called load tweets to load the page the first time
+  loadTweets();
   //  Event listener for submitting form to post new tweet
   $('#tweetcreater').on('submit', function(event) {
     // prevent the default behavor
@@ -97,7 +100,7 @@ $(function () {
           // on success, refresh the creaks on the page
           console.log("Yup! I am done", serializedData);
           loadTweets();
-          $(this).val(null);
+          document.getElementById('tweetcreater').reset();
         });
     } else {
       alert(validate);
