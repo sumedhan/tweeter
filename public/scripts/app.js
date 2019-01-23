@@ -27,8 +27,13 @@ function createTweetSection(contentText) {
 }
 function createTweetFooter(timeStamp) {
   var $timeStamp = $("<span>").text(timeStamp);
+
   var $symbols = $("<span>").addClass("symbols");
-  $symbols.text("⚑ ↻ ♡");
+  var $flag = $("<i>").addClass("fas fa-flag");
+  var $retweet = $("<i>").addClass("fas fa-retweet");
+  var $heart = $("<i>").addClass("fas fa-heart");
+  $symbols.append($flag, $retweet, $heart);
+  
   var $footer = $("<footer>");
   $footer.append($timeStamp, $symbols);
   return $footer;
