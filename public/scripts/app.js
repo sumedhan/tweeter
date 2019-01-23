@@ -60,9 +60,18 @@ $(function () {
     }
   }
 
-  // Load initial tweets
-  //renderTweets(tweetData);
-
+  // Validates data entered 
+  //The user should be given an error that their tweet content is too long or that it is not present (ideally separate messages for each scenario)
+  //The form should not be cleared
+  //The form should not submit
+  function validateData(data) {
+    if(!data) {
+      return "Need to tweet something!"
+    } else if (data.length > 140) {
+      return "delete something";
+    }
+    return true;
+  }
   // Ajax to fetch tweets 
   function loadTweets() {
     $.ajax({
@@ -77,17 +86,22 @@ $(function () {
     // prevent the default behavor
     event.preventDefault();
     const serializedData = $(this).serialize();
-
-    // Ajax post
-    $.ajax({
-      method: 'POST',
-      url: '/tweets',
-      data: serializedData
-    }).done(function() {
-      // on success, refresh the creaks on the page
-      console.log("Yup! I am done", serializedData);
-      loadTweets();
-    });
+    const validate = validateData($(this).find("textarea").val());
+    if( validate === true) {
+       // Ajax post
+        $.ajax({
+          method: 'POST',
+          url: '/tweets',
+          data: serializedData
+        }).done(function() {
+          // on success, refresh the creaks on the page
+          console.log("Yup! I am done", serializedData);
+          loadTweets();
+          $(this).val(null);
+        });
+    } else {
+      alert(validate);
+    }
   });
-  
+
 });
