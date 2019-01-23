@@ -1,5 +1,5 @@
 $( function() {
-  let tweet = "textarea[name='composeTweet']";
+  let tweet = "textarea[name='text']";
   $(tweet).on("input", function() {
     let charCounter = 140 - $(this).val().length;
     let counter = $(this).siblings(".counter");
