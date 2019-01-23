@@ -1,5 +1,5 @@
-article.tweet {
-  border: 1px solid #eee;
+.tweet {
+  border: 1px solid grey;;
   border-radius: 10px;
   margin-top: 10px;
 }
@@ -11,23 +11,40 @@ article.tweet header {
 }
 .tweet header h2 {
   display: inline;
+  color: rgb(1, 51, 51);
+  opacity: 0.5;
 }
 .tweet header .avatars { 
   margin-right: 10px;
   display: inline;
   float: left;
+  opacity: 0.5;
 }
 .tweet header h5 {
-  float: right;
   display: inline;
+  color: black;
+  font-weight: normal;
+  float: right;
+  opacity: 0.5;
 }
-.tweet p {
+.tweet .tweetcontent {
   clear: both;
-}
-article.tweet section {
+  color: black;
   padding: 10px;
 }
-article.tweet footer {
+.tweet footer {
   border-top: 1px solid #eee;
-  padding: 5px;
+  padding: 10px;  
+  color: black;
+}
+.tweet footer .symbols{
+  float: right;
+  color: rgb(1, 51, 51);
+  visibility: hidden;
+}
+.tweet:hover header *{ 
+  opacity: 1;
+}
+.tweet:hover footer *{
+  visibility: visible;
 }

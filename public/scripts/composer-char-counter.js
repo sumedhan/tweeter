@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$( function() {
   let tweet = "textarea[name='composeTweet']";
   $(tweet).on("input", function() {
     let charCounter = 140 - $(this).val().length;
