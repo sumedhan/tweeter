@@ -1,0 +1,20 @@
+article.tweet header {
+  background-color: #eee;
+  margin-top: 10px;
+  height: 50px;
+}
+.tweet header h2 {
+  display: inline;
+}
+.tweet header .avatars { 
+  margin-right: 10px;
+  display: inline;
+  float: left;
+}
+.tweet header h5 {
+  float: right;
+  display: inline;
+}
+.tweet p {
+  clear: both;
+}

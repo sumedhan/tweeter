@@ -31,11 +31,4 @@ body {
    margin: auto;
    padding: 140px 2em 2em 2em;
  }
- .tweet-container {
-  border: 1px solid black;
- }
- .tweet header {
-   display: inline-block;
- }
- .tweet header img {
- }
+ 
