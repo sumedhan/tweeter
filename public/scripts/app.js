@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable func-names */
 /* eslint-disable prefer-arrow-callback */
 /*
@@ -9,74 +10,75 @@
 $(function () {
   const tweetContainer = $('.tweet-container');
 
-  //  Function that creates tweet element with three helper functions creating header, section and footer
-  function createTweetElement(tweetData) {
-    var $tweet = $('<article>').addClass('tweet');
-    $header = createTweetHeader(tweetData.user.avatars.small, tweetData.user.name, tweetData.user.handle);
-    $tweet.append($header);
-    var $section = createTweetSection(tweetData.content.text);
-    $tweet.append($section);
-    var $footer = createTweetFooter(tweetData['created_at']);
-    $tweet.append($footer);
-    return $tweet;
-  }
-
-  function createTweetHeader(avatar, name, handle){
-    var $avatar = $('<img>').attr('src',avatar);
-    var $name = $('<h2>').text(name);
-    var $handle = $('<h5>').text(handle);
-    var $header = $('<header>').append($avatar, $name, $handle);
+  function createTweetHeader(avatar, name, handle) {
+    const $avatar = $('<img>').attr('src', avatar);
+    const $name = $('<h2>').text(name);
+    const $handle = $('<h5>').text(handle);
+    const $header = $('<header>').append($avatar, $name, $handle);
     return $header;
   }
 
   function createTweetSection(contentText) {
-    var $section = $('<section>').text(contentText);
+    const $section = $('<section>').text(contentText);
     return $section;
   }
 
   function createTweetFooter(timeStamp) {
     // Needs to changed to show time ago
-    let timeStampInSeconds = timeStamp / 1000;
-    var $timeStamp = $(`<span data-livestamp=${timeStampInSeconds}>`);
-  
+    const timeStampInSeconds = timeStamp / 1000;
+    const $timeStamp = $(`<span data-livestamp=${timeStampInSeconds}>`);
     // Uses the awesome icons CSS to display awesome icons.
-    var $symbols = $('<span>').addClass('symbols');
-    var $flag = $('<i>').addClass('fas fa-flag');
-    var $retweet = $('<i>').addClass('fas fa-retweet');
-    var $heart = $('<i>').addClass('fas fa-heart');
+
+    const $symbols = $('<span>').addClass('symbols');
+    const $flag = $('<i>').addClass('fas fa-flag');
+    const $retweet = $('<i>').addClass('fas fa-retweet');
+    const $heart = $('<i>').addClass('fas fa-heart');
     $symbols.append($flag, $retweet, $heart);
-  
-    var $footer = $('<footer>');
+
+    const $footer = $('<footer>');
     $footer.append($timeStamp, $symbols);
     return $footer;
+  }
+
+  //  Function creates tweet element with three helper functions creating header, section and footer
+  function createTweetElement(tweetData) {
+    const $tweet = $('<article>').addClass('tweet');
+    const $header = createTweetHeader(tweetData.user.avatars.small,
+      tweetData.user.name,
+      tweetData.user.handle);
+    $tweet.append($header);
+    const $section = createTweetSection(tweetData.content.text);
+    $tweet.append($section);
+    const $footer = createTweetFooter(tweetData['created_at']);
+    $tweet.append($footer);
+    return $tweet;
   }
 
   // Renders tweets to tweet-container
   function renderTweets(tweetData) {
     tweetContainer.empty();
-    for( var i = 0; i < tweetData.length; i++) {
-      var $tweet = createTweetElement(tweetData[i]);
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < tweetData.length; i++) {
+      const $tweet = createTweetElement(tweetData[i]);
       tweetContainer.prepend($tweet);
     }
   }
 
-  // Validates data entered 
-  //The user should be given an error that their tweet content is too long or that it is not present (ideally separate messages for each scenario)
-  //The form should not be cleared
-  //The form should not submit
+  // Validates data entered
   function validateData(data) {
-    if(!data) {
-      return "Error! Empty Tweet!"
-    } else if (data.length > 140) {
-      return "Over 140 characters!";
+    if (!data) {
+      return 'Error! Empty Tweet!';
+    }
+    if (data.length > 140) {
+      return 'Over 140 characters!';
     }
     return true;
   }
   // Ajax to fetch tweets 
   function loadTweets() {
     $.ajax({
-      method: "GET",
-      url: "/tweets"
+      method: 'GET',
+      url: '/tweets'
     }).done(function(tweets) {
       renderTweets(tweets);
     });
@@ -88,10 +90,10 @@ $(function () {
   $('#tweetcreater').on('submit', function(event) {
     // prevent the default behavor
     event.preventDefault();
-    $(".error").slideUp("fast");
+    $('.error').slideUp('fast');
     const serializedData = $(this).serialize();
-    const $textarea = $(this).find("textarea")
-    const $counter = $(this).find(".counter");
+    const $textarea = $(this).find('textarea')
+    const $counter = $(this).find('.counter');
     const validate = validateData($textarea.val());
     if( validate === true) {
        // Ajax post
@@ -106,19 +108,19 @@ $(function () {
           $counter.text(140);
         });
     } else {
-      $(".error").text(validate);
-      $(".error").slideDown("fast");
+      $('.error').text(validate);
+      $('.error').slideDown('fast');
     }
   });
 
   // Toggle compose 
-  $(".compose").on('click', function() {
-    const composeVisible = $(".new-tweet").is(':visible');
+  $('.compose').on('click', function() {
+    const composeVisible = $('.new-tweet').is(':visible');
     if(composeVisible) {
-      $(".new-tweet").slideUp("slow");
+      $('.new-tweet').slideUp('slow');
     } else {
-      $(".new-tweet").slideDown("slow");
-      $("section.new-tweet textarea").focus();
+      $('.new-tweet').slideDown('slow');
+      $('section.new-tweet textarea').focus();
     }
   })
 
