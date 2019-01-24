@@ -1,18 +1,24 @@
-"use strict";
+/* eslint-disable no-multi-spaces */
+
+'use strict';
 
 // Basic express setup:
 
+// eslint-disable-next-line no-multi-spaces
 const PORT          = 8080;
-const express       = require("express");
-const bodyParser    = require("body-parser");
+const express       = require('express');
+const bodyParser    = require('body-parser');
+
 const app           = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 //  Connecting to MongoDB
-const MongoClient = require("mongodb").MongoClient;
-const MONGODB_URI = "mongodb://localhost:27017/tweeter";
+// eslint-disable-next-line prefer-destructuring
+const MongoClient = require('mongodb').MongoClient;
+
+const MONGODB_URI = 'mongodb://localhost:27017/tweeter';
 
 // Retrieving data from MongoDB
 MongoClient.connect(MONGODB_URI, (err, db) => {
@@ -20,32 +26,17 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
     console.error(`Failed to connect: ${MONGODB_URI}`);
     throw err;
   }
-  console.log("Connected to MongoDB");
+  console.log('Connected to MongoDB');
 
-  const DataHelpers = require("./lib/data-helpers.js")(db);
+  const DataHelpers = require('./lib/data-helpers.js')(db);
 
-  const tweetsRoutes = require("./routes/tweets")(DataHelpers);
+  const tweetsRoutes = require('./routes/tweets')(DataHelpers);
 
-  app.use("/tweets", tweetsRoutes);
+  app.use('/tweets', tweetsRoutes);
 
+  app.listen(PORT, () => {
+    console.log('Example app listening on port ' + PORT);
+  });
 });
 
-// The `data-helpers` module provides an interface to the database of tweets.
-// This simple interface layer has a big benefit: we could switch out the
-// actual database it uses and see little to no changes elsewhere in the code
-// (hint hint).
-//
-// Because it exports a function that expects the `db` as a parameter, we can
-// require it and pass the `db` parameter immediately:
-//const DataHelpers = require("./lib/data-helpers.js")(db);
 
-// The `tweets-routes` module works similarly: we pass it the `DataHelpers` object
-// so it can define routes that use it to interact with the data layer.
-//const tweetsRoutes = require("./routes/tweets")(DataHelpers);
-
-// Mount the tweets routes at the "/tweets" path prefix:
-//app.use("/tweets", tweetsRoutes);
-
-app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
-});

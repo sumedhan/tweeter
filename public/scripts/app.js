@@ -102,7 +102,7 @@ $(function () {
           url: '/tweets',
           data: serializedData
         }).done(function() {
-          // on success, refresh the creaks on the page
+          // on success, refresh the tweets on the page
           loadTweets();
           document.getElementById('tweetcreater').reset();
           $counter.text(140);
