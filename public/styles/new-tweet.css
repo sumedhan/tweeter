@@ -2,6 +2,7 @@ section.new-tweet {
   background-color: #eee;
   padding: 10px;
   border-radius: 10px;
+  display: none;
 }
 section.new-tweet h2 {
   border-bottom: 1px solid black;

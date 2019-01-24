@@ -4,7 +4,7 @@
 $(function () {
   const tweet = "textarea[name='text']";
   // eslint-disable-next-line func-names
-  $(tweet).on('input reset', function() {
+  $(tweet).on('input change reset', function() {
     let charCounter = 140 - $(this).val().length;
     let counter = $(this).siblings('.counter');
     counter.text(charCounter);

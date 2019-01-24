@@ -89,7 +89,9 @@ $(function () {
     // prevent the default behavor
     event.preventDefault();
     const serializedData = $(this).serialize();
-    const validate = validateData($(this).find("textarea").val());
+    const $textarea = $(this).find("textarea")
+    const $counter = $(this).find(".counter");
+    const validate = validateData($textarea.val());
     if( validate === true) {
        // Ajax post
         $.ajax({
@@ -98,13 +100,19 @@ $(function () {
           data: serializedData
         }).done(function() {
           // on success, refresh the creaks on the page
-          console.log("Yup! I am done", serializedData);
           loadTweets();
           document.getElementById('tweetcreater').reset();
+          $counter.text(140);
         });
     } else {
       alert(validate);
     }
   });
+
+  // Toggle compose 
+  $(".compose").on('click', function() {
+    $(".new-tweet").slideDown("slow");
+    $("section.new-tweet textarea").focus();
+  })
 
 });
