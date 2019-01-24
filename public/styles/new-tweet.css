@@ -16,6 +16,12 @@ section.new-tweet textarea {
 .counter {
   float: right;
 }
+.error {
+  padding: 2px;
+  margin: 2px;
+  color: red;
+  display: none;
+}
 .invalid {
   color: red;
 }

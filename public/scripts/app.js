@@ -88,6 +88,7 @@ $(function () {
   $('#tweetcreater').on('submit', function(event) {
     // prevent the default behavor
     event.preventDefault();
+    $(".error").slideUp("fast");
     const serializedData = $(this).serialize();
     const $textarea = $(this).find("textarea")
     const $counter = $(this).find(".counter");
@@ -105,7 +106,8 @@ $(function () {
           $counter.text(140);
         });
     } else {
-      alert(validate);
+      $(".error").text(validate);
+      $(".error").slideDown("fast");
     }
   });
 
