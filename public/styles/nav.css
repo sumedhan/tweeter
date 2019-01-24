@@ -6,20 +6,26 @@
   padding: 0 2em 0 2em;
   color: #E7FCFE;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#nav-bar .nav-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 #nav-bar .logo {
   height: 80px;
   width: 80px;
-  float: left;
   margin-right: 10px;
 }
 #nav-bar .title-text {
   font-size: 2em;
-  float: left;
-  line-height: 2.5;
 }
 #nav-bar .nav-right {
-  float: right;
+  display: flex;
+  align-items: center;
 }
 #nav-bar .compose {
   margin: 10px;
