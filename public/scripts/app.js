@@ -45,7 +45,7 @@ $(function () {
     var $retweet = $('<i>').addClass('fas fa-retweet');
     var $heart = $('<i>').addClass('fas fa-heart');
     $symbols.append($flag, $retweet, $heart);
-    
+  
     var $footer = $('<footer>');
     $footer.append($timeStamp, $symbols);
     return $footer;
@@ -66,9 +66,9 @@ $(function () {
   //The form should not submit
   function validateData(data) {
     if(!data) {
-      return "Need to tweet something!"
+      return "Error! Empty Tweet!"
     } else if (data.length > 140) {
-      return "delete something";
+      return "Over 140 characters!";
     }
     return true;
   }
@@ -113,8 +113,13 @@ $(function () {
 
   // Toggle compose 
   $(".compose").on('click', function() {
-    $(".new-tweet").slideDown("slow");
-    $("section.new-tweet textarea").focus();
+    const composeVisible = $(".new-tweet").is(':visible');
+    if(composeVisible) {
+      $(".new-tweet").slideUp("slow");
+    } else {
+      $(".new-tweet").slideDown("slow");
+      $("section.new-tweet textarea").focus();
+    }
   })
 
 });
