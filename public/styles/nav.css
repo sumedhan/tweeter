@@ -2,9 +2,10 @@
   position: fixed;
   height: 80px;
   width: 100%;
-  background-color: #00a087;
+  background-color:#2DA085;
   padding: 0 2em 0 2em;
-  color: #edfdff;
+  color: #E7FCFE;
+  z-index: 1;
 }
 #nav-bar .logo {
   height: 80px;
@@ -16,5 +17,21 @@
   font-size: 2em;
   float: left;
   line-height: 2.5;
+}
+#nav-bar .nav-right {
+  float: right;
+}
+#nav-bar .compose {
+  margin: 10px;
+  padding: 20px 10px;
+  border: 1px solid black;
+  color: #2DA085;
+  background-color: #E7FDFF;
+  border-radius: 5px;
+}
+#nav-bar .compose:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
 }
 

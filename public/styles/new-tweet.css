@@ -5,6 +5,8 @@ section.new-tweet {
 }
 section.new-tweet h2 {
   border-bottom: 1px solid black;
+  color: #22454E;
+  margin: 0;
 }
 section.new-tweet textarea {
   width: 100%;
