@@ -44,7 +44,8 @@ module.exports = function(DataHelpers) {
 
   tweetsRoutes.post("/:tweetid/like", function(req, res) {
     const details = {
-      tweetid: req.params.tweetid
+      tweetid: req.params.tweetid,
+      likes: req.body.likes
     }
     DataHelpers.likeTweet(details, (err, doc) => {
       if (err) {

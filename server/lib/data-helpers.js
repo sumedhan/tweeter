@@ -21,15 +21,11 @@ module.exports = function makeDataHelpers(db) {
     //Likes the tweet
     likeTweet (details, callback) {
       let tweetid = ObjectId(details.tweetid);
-      db.collection("tweets").findOne(
-        {'_id':tweetid}, (err, tweetDoc) => {
-        if (err) throw err;
-        let totalLikes = Number(tweetDoc.likes);
-        totalLikes += 1;
-        db.collection("tweets").findOneAndUpdate({'_id':tweetid}, {$set: {'likes': totalLikes.toString()}}, (err, doc) => {
+      let likes = details.likes;
+      console.log(details);
+      db.collection("tweets").findOneAndUpdate({'_id':tweetid}, {$set: {'likes': likes}}, (err, doc) => {
           callback(err, doc);
         });
-      });
     }
   }
 };

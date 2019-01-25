@@ -32,10 +32,8 @@ $(function () {
     const $symbols = $('<span>').addClass('symbols');
     const $flag = $('<i>').addClass('fas fa-flag');
     const $retweet = $('<i>').addClass('fas fa-retweet');
-
     const $heart = $('<i>').addClass('fas fa-heart');
     $heart.data( {
-      "liked": false,
       "tweetid": id
     });
     $heart.text(likes);
@@ -135,9 +133,12 @@ $(function () {
    // Like button
    $(document).on('click', '.symbols i.fa-heart', function() {
     let tweetid = $(this).data("tweetid");
+    let likeNum = Number($(this).text());
+    likeNum += 1;
     $.ajax({
       method: 'POST',
       url: `/tweets/${tweetid}/like`,
+      data: {likes : likeNum }
     }).done( function(){
       loadTweets();
     });
