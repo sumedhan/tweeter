@@ -26,9 +26,9 @@ body {
  */
 
  main.container {
-   width: 450px;
+   width: 60vw;
    background: white;
    margin: auto;
-   padding: 140px 2em 2em 2em;
+   padding: 8em 2em 2em 2em;
  }
  

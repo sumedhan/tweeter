@@ -24,21 +24,22 @@ $(function () {
   }
 
   function createTweetFooter(timeStamp, id, likes) {
-    // Needs to changed to show time ago
+    // Time ago calculator
     const timeStampInSeconds = timeStamp / 1000;
     const $timeStamp = $(`<span data-livestamp=${timeStampInSeconds}>`);
+    
     // Uses the awesome icons CSS to display awesome icons.
-
     const $symbols = $('<span>').addClass('symbols');
     const $flag = $('<i>').addClass('fas fa-flag');
     const $retweet = $('<i>').addClass('fas fa-retweet');
+
     const $heart = $('<i>').addClass('fas fa-heart');
     $heart.data( {
       "liked": false,
       "tweetid": id
     });
-    
     $heart.text(likes);
+
     $symbols.append($flag, $retweet, $heart);
 
     const $footer = $('<footer>');
@@ -48,7 +49,6 @@ $(function () {
 
   //  Function creates tweet element with three helper functions creating header, section and footer
   function createTweetElement(tweetData) {
-    console.log(tweetData);
     const $tweet = $('<article>').addClass('tweet');
     const $header = createTweetHeader(tweetData.user.avatars.small,
       tweetData.user.name,
@@ -134,21 +134,10 @@ $(function () {
 
    // Like button
    $(document).on('click', '.symbols i.fa-heart', function() {
-    const likeOrUnlike = {
-      likesAdd: 1
-    };
-    if ($(this).data("liked")) {
-      $(this).data("liked",false)
-      likeOrUnlike.likesAdd = -1;
-    } else {
-      $(this).data("liked",true)
-    }
-    tweetid = $(this).data("tweetid"),
-
+    let tweetid = $(this).data("tweetid");
     $.ajax({
       method: 'POST',
       url: `/tweets/${tweetid}/like`,
-      data: likeOrUnlike
     }).done( function(){
       loadTweets();
     });
