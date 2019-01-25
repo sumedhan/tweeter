@@ -134,18 +134,24 @@ $(function () {
 
    // Like button
    $(document).on('click', '.symbols i.fa-heart', function() {
-    let likeOrUnlike = 1;
+    const likeOrUnlike = {
+      likesAdd: 1
+    };
     if ($(this).data("liked")) {
       $(this).data("liked",false)
-      likeOrUnlike = -1;
+      likeOrUnlike.likesAdd = -1;
     } else {
       $(this).data("liked",true)
     }
-    const likeInfo = {
-      tweetid: $(this).data("tweetid"),
-      likeOrUnlike
-    }
-    console.log(likeInfo);
+    tweetid = $(this).data("tweetid"),
+
+    $.ajax({
+      method: 'POST',
+      url: `/tweets/${tweetid}/like`,
+      data: likeOrUnlike
+    }).done( function(){
+      loadTweets();
+    });
     
   });
 

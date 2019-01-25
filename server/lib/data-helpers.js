@@ -13,9 +13,23 @@ module.exports = function makeDataHelpers(db) {
     },
 
 
-    // Get all tweets in `db`, sorted by newest first
+    // Get all tweets in `db`
     getTweets (callback) {
       db.collection("tweets").find().toArray((callback));
+    },
+
+    //Likes the tweet
+    likeTweet (details, callback) {
+      let tweetid = details.tweetid;
+      let likeOrUnlike = (details.likeOrUnlike);
+      //console.log(tweetid, likeOrUnlike);
+      //db.collection("tweets").findOneAndUpdate({})
     }
+
+
+
+
+
+
   }
 };

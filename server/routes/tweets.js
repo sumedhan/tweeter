@@ -41,6 +41,21 @@ module.exports = function(DataHelpers) {
     });
   });
 
+  tweetsRoutes.post("/:tweetid/like", function(req, res) {
+    console.log(req.body.data);
+    const details = {
+      tweetid: req.params.tweetid,
+    }
+    DataHelpers.likeTweet(details, (err) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+        res.send("OK");
+      }
+    });
+  
+  })
+
 
   return tweetsRoutes;
 
