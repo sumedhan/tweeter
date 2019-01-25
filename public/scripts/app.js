@@ -33,6 +33,8 @@ $(function () {
     const $flag = $('<i>').addClass('fas fa-flag');
     const $retweet = $('<i>').addClass('fas fa-retweet');
     const $heart = $('<i>').addClass('fas fa-heart');
+    $heart.data("liked", false);
+    console.log($heart.data());
     $symbols.append($flag, $retweet, $heart);
 
     const $footer = $('<footer>');
