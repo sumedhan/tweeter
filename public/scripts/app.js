@@ -23,7 +23,7 @@ $(function () {
     return $section;
   }
 
-  function createTweetFooter(timeStamp) {
+  function createTweetFooter(timeStamp, id, likes) {
     // Needs to changed to show time ago
     const timeStampInSeconds = timeStamp / 1000;
     const $timeStamp = $(`<span data-livestamp=${timeStampInSeconds}>`);
@@ -33,8 +33,12 @@ $(function () {
     const $flag = $('<i>').addClass('fas fa-flag');
     const $retweet = $('<i>').addClass('fas fa-retweet');
     const $heart = $('<i>').addClass('fas fa-heart');
-    $heart.data("liked", false);
-    console.log($heart.data());
+    $heart.data( {
+      "liked": false,
+      "tweetid": id
+    });
+    
+    $heart.text(likes);
     $symbols.append($flag, $retweet, $heart);
 
     const $footer = $('<footer>');
@@ -44,6 +48,7 @@ $(function () {
 
   //  Function creates tweet element with three helper functions creating header, section and footer
   function createTweetElement(tweetData) {
+    console.log(tweetData);
     const $tweet = $('<article>').addClass('tweet');
     const $header = createTweetHeader(tweetData.user.avatars.small,
       tweetData.user.name,
@@ -51,7 +56,7 @@ $(function () {
     $tweet.append($header);
     const $section = createTweetSection(tweetData.content.text);
     $tweet.append($section);
-    const $footer = createTweetFooter(tweetData['created_at']);
+    const $footer = createTweetFooter(tweetData['created_at'], tweetData['_id'], tweetData.likes);
     $tweet.append($footer);
     return $tweet;
   }
@@ -124,6 +129,26 @@ $(function () {
       $('.new-tweet').slideDown('slow');
       $('section.new-tweet textarea').focus();
     }
-  })
+  });
+  
+
+   // Like button
+   $(document).on('click', '.symbols i.fa-heart', function() {
+    let likeOrUnlike = 1;
+    if ($(this).data("liked")) {
+      $(this).data("liked",false)
+      likeOrUnlike = -1;
+    } else {
+      $(this).data("liked",true)
+    }
+    const likeInfo = {
+      tweetid: $(this).data("tweetid"),
+      likeOrUnlike
+    }
+    console.log(likeInfo);
+    
+  });
+
+ 
 
 });
