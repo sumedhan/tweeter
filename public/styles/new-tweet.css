@@ -8,17 +8,17 @@ section.new-tweet h2 {
   border-bottom: 1px solid black;
   color: #22454E;
   margin: 0;
+  margin-bottom: 5%;
 }
 section.new-tweet textarea {
   width: 100%;
-  padding: 10px;
+  padding: 2%;
 }
 .counter {
   float: right;
 }
 .error {
-  padding: 2px;
-  margin: 2px;
+  padding: 1%;
   color: red;
   display: none;
 }
