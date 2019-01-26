@@ -126,6 +126,28 @@ $(function () {
     }
   });
 
+  // Toggle Login
+  $('.login').on('click', function () {
+    const loginVisible = $('.login-form').is(':visible');
+    if (loginVisible) {
+      $('.login-form').slideUp('slow');
+    } else {
+      $('.login-form').slideDown('slow');
+      $('section.login-form .email').focus();
+    }
+  });
+
+  // Toggle Register
+  $('.register').on('click', function () {
+    const registerVisible = $('.register-form').is(':visible');
+    if (registerVisible) {
+      $('.register-form').slideUp('slow');
+    } else {
+      $('.register-form').slideDown('slow');
+      $('section.register-form .email').focus();
+    }
+  });
+
   // Like button
   $(document).on('click', '.symbols i.fa-heart', function () {
     const tweetid = $(this).data('tweetid');

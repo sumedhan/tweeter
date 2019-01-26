@@ -1,10 +1,10 @@
-section.new-tweet {
+section.new-tweet, section.register-form, section.login-form {
   background-color: #eee;
   padding: 10px;
   border-radius: 10px;
   display: none;
 }
-section.new-tweet h2 {
+section.new-tweet h2, section.register-form h2, section.login-form h2 {
   border-bottom: 1px solid black;
   color: #22454E;
   margin: 0;
@@ -14,7 +14,7 @@ section.new-tweet textarea {
   width: 100%;
   padding: 2%;
 }
-.counter {
+section.new-tweet .counter {
   float: right;
 }
 .error {

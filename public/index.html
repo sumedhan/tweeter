@@ -39,9 +39,12 @@
         <span class="title-text">Tweeter</span>
       </span>
       <span class="nav-right">
+        <!--if not logged in -->
           <button type="button" class="register"><i class="fas fa-user-plus"></i> Register</button>
-        <button type="button" class="login"><i class="fas fa-sign-in-alt"></i> Login</button>
-        <button type="button" class="compose"><i class="fas fa-edit"></i> Compose</button>
+          <button type="button" class="login"><i class="fas fa-sign-in-alt"></i> Login</button>
+        <!-- if logged out-->
+          <button type="button" class="logout"><i class="fas fa-sign-in-alt"></i> Logout</button>
+          <button type="button" class="compose"><i class="fas fa-edit"></i> Compose</button>
       </span>
     </nav>
 
@@ -57,6 +60,29 @@
           <span class="error">Error</span>
         </form> 
       </section>
+
+      <section class="register-form">
+          <h2>Register</h2>
+          <form id="registeruser" method="POST" action="/register">
+            <label>Email:</label>
+            <input class="email" type="email" name="email" placeholder="abc@xyz.com">
+            <label>Password:</label>
+            <input type="password" name="password">
+            <input type="submit" value="Register">
+          </form> 
+        </section>
+      
+        <section class="login-form">
+          <h2>Login</h2>
+          <form id="login" method="POST" action="/login">
+            <label>Email:</label>
+            <input class="email" type="email" name="email" placeholder="abc@xyz.com">
+            <label>Password:</label>
+            <input type="password" name="password">
+            <input type="submit" value="Login">
+          </form> 
+        </section>
+      
       <div class="tweet-container">
       </div>
     </main>
