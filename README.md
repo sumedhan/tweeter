@@ -6,7 +6,7 @@ Tweeter is a simple, single-page Twitter clone. Using HTML, CSS, JS, jQuery and 
 
 ### Tweeter Home
 
-![Home](./Screenshots/Tweeter Home.png)
+![Home](./Screenshots/Tweeter Home.png.)
 
 
 ## Getting Started
