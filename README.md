@@ -6,7 +6,16 @@ Tweeter is a simple, single-page Twitter clone. Using HTML, CSS, JS, jQuery and 
 
 ### Tweeter Home
 
-![Home](./Screenshots/Tweeter Home.png.)
+![Home] (./Screenshots/Tweeter Home.png)
+
+### Hovering over a tweet
+![Hover] (./Screenshots/Hover_over_tweet.png)
+
+### Error messages for invalid tweets
+
+![Error1] (./Screenshots/Error_Over140.png)
+
+![Error2] (./Screenshots/Error - Empty Tweet.png)
 
 
 ## Getting Started
