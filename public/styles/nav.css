@@ -27,7 +27,7 @@
   display: flex;
   align-items: center;
 }
-#nav-bar .compose {
+#nav-bar .compose, .login, .register{
   margin: 10px;
   padding: 20px 10px;
   border: 1px solid black;
@@ -35,7 +35,7 @@
   background-color: #E7FDFF;
   border-radius: 5px;
 }
-#nav-bar .compose:hover {
+#nav-bar .compose:hover, .login:hover, .register:hover {
   cursor: pointer;
   background-color: white;
   color: black;
