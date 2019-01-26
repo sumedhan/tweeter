@@ -4,7 +4,7 @@
 
 $(function () {
   const tweetContainer = $('.tweet-container');
-
+  // Helper function to create a tweet header, section and footer
   function createTweetHeader(avatar, name, handle) {
     const $avatar = $('<img>').attr('src', avatar);
     const $name = $('<h2>').text(name);
@@ -12,43 +12,45 @@ $(function () {
     const $header = $('<header>').append($avatar, $name, $handle);
     return $header;
   }
-
   function createTweetSection(contentText) {
     const $section = $('<section>').text(contentText);
     return $section;
   }
-
   function createTweetFooter(timeStamp, id, likes) {
-    // Time ago calculator
+    // Time ago calculator - using livestamp plugin
     const timeStampInSeconds = timeStamp / 1000;
     const $timeStamp = $(`<span data-livestamp=${timeStampInSeconds}>`);
-
     // Uses the awesome icons CSS to display awesome icons.
     const $symbols = $('<span>').addClass('symbols');
     const $flag = $('<i>').addClass('fas fa-flag');
     const $retweet = $('<i>').addClass('fas fa-retweet');
+
     const $heart = $('<i>').addClass('fas fa-heart');
     $heart.data('tweetid', id);
     $heart.text(likes);
 
     $symbols.append($flag, $retweet, $heart);
-
     const $footer = $('<footer>');
     $footer.append($timeStamp, $symbols);
     return $footer;
   }
-
   //  Function creates tweet element with three helper functions creating header, section and footer
   function createTweetElement(tweetData) {
     const $tweet = $('<article>').addClass('tweet');
-    const $header = createTweetHeader(tweetData.user.avatars.small,
+    const $header = createTweetHeader(
+      tweetData.user.avatars.small,
       tweetData.user.name,
-      tweetData.user.handle);
+      tweetData.user.handle,
+    );
     $tweet.append($header);
     const $section = createTweetSection(tweetData.content.text);
     $tweet.append($section);
     // eslint-disable-next-line dot-notation
-    const $footer = createTweetFooter(tweetData['created_at'], tweetData['_id'], tweetData.likes);
+    const $footer = createTweetFooter(
+      tweetData['created_at'],
+      tweetData['_id'],
+      tweetData.likes
+    );
     $tweet.append($footer);
     return $tweet;
   }
@@ -85,6 +87,7 @@ $(function () {
 
   // Called load tweets to load the page the first time
   loadTweets();
+
   //  Event listener for submitting form to post new tweet
   $('#tweetcreater').on('submit', function (event) {
     // prevent the default behavor
@@ -122,7 +125,6 @@ $(function () {
       $('section.new-tweet textarea').focus();
     }
   });
-
 
   // Like button
   $(document).on('click', '.symbols i.fa-heart', function () {

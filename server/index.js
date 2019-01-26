@@ -1,3 +1,4 @@
+// Server file
 /* eslint-disable no-multi-spaces */
 
 'use strict';
@@ -35,8 +36,6 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   app.use('/tweets', tweetsRoutes);
 
   app.listen(PORT, () => {
-    console.log('Example app listening on port ' + PORT);
+    console.log('Sumedha tweeter app listening on port ' + PORT);
   });
 });
-
-
